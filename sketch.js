@@ -45,7 +45,7 @@ function setup() {
 function draw(){
   
   //background colour
-  background("lightBlue");
+  background("black");
   
   if (gameState===play) {
     
