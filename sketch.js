@@ -26,7 +26,7 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(600,600);
+  createCanvas(windowWidth,windowHeight);
   
   //creating sword
   sword=createSprite(100,300,50,50);
@@ -45,7 +45,7 @@ function setup() {
 function draw(){
   
   //background colour
-  background("black");
+  background("lightblue");
   
   if (gameState===play) {
     
@@ -82,8 +82,8 @@ function draw(){
   
   if (gameState===end) {
     sword.addImage(gameoverImage);
-    sword.y=300;
-    sword.x=300;
+    sword.y=windowHeight/2;
+    sword.x=windowWidth/2;
   }
   
   drawSprites ();
@@ -91,16 +91,16 @@ function draw(){
   fill("darkGreen");
   textSize(20);
   //printing the score
-  text("Score:"+score,280,20);
+  text("Score:"+score,windowWidth/2,20);
 }
   
   //creating fruits
   function createFruits() {
     if (frameCount%40===0) {
       var positionF=Math.round(random(1,2));
-      var fruits=createSprite(600,Math.round(random(50,550)));
+      var fruits=createSprite(windowWidth,Math.round(random(50,windowHeight-30)));
       if (positionF===1) {
-        fruits.x=600;
+        fruits.x=windowWidth;
         fruits.velocityX=-(8+Math.round(score/4));
       }else {
         fruits.x=0;
@@ -118,9 +118,8 @@ function draw(){
                 break;
         default: break;
     }
-    //assingning scale and lifetime 
+    //assingning scale 
     fruits.scale=0.3;
-    fruits.lifetime=75;
     //adding the fruits to its group
     fruitsGroup.add(fruits);
     }
@@ -131,12 +130,12 @@ function draw(){
   function createMicrobes() {
     if (frameCount%30===0) {
       var positionM=Math.round(random(3,4));
-      var microbes=createSprite(600,Math.round(random(50,550)));
+      var microbes=createSprite(windowWidth,Math.round(random(50,windowHeight-30)));
       if (positionM===3) {
         microbes.x=0;
         microbes.velocityX=(10+Math.round(score/10));
       } else {
-        microbes.x=600;
+        microbes.x=windowWidth;
         microbes.velocityX=-(10+Math.round(score/10));
       }
       var rand=Math.round(random(1,2))
@@ -147,8 +146,6 @@ function draw(){
                 break;
         default: break;
     }
-    //assingning scale and lifetime
-    microbes.lifetime=60;
     //adding the microbes to its group
     microbesGroup.add(microbes);
     } 
